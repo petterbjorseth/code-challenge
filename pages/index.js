@@ -19,21 +19,11 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a href="/challenges/one" className={styles.card}>
+          <a href="/challenges" className={styles.card}>
             <h3>Lets go!!! &rarr;</h3>
           </a>
         </div>
       </main>
-
-      <footer>
-        <a
-          href="https://www.netlight.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/unicorn.png" alt="Vercel" className={styles.logo} width="150" height="100" />
-        </a>
-      </footer>
 
       <style jsx>{`
         main {
