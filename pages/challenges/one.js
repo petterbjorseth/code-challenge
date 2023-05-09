@@ -84,7 +84,7 @@ export default function One() {
             }
             {
                 correctAnswer &&
-                <div className={style.youDidIt} onClick={() => {reset}}>
+                <div className={style.youDidIt} onClick={reset}>
                     <p>YOU DID IT!! WELL DONE :-D (click here to view challenge text again)</p>
                     <img src='/success1.jpg'/>
                 </div>
