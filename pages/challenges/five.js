@@ -68,7 +68,7 @@ export default function One() {
             !correctAnswer && 
             <div>
                 <div>
-                <h1>Easter numbers</h1>
+                <h1>Matryoshka Encoded Eggs</h1>
                 {
                     (!correctAnswer && hasAnswered) &&
                     <p className={style.youDidntDoIt}>Wrong answer.. Try again!</p>
