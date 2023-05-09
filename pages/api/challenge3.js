@@ -13,11 +13,11 @@ export default function handler(req, res) {
       return res.status(400).json({ data: 'No answer found' })
     }
 
-    let ret = "False";
+    let ret = false;
 
     let answer = 'Yousef Nairn,49';
     if (body.answer === answer) {
-        ret = "Correct!";
+        ret = true;
     }
   
     // Found the name.

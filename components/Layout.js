@@ -6,13 +6,21 @@ class Layout extends Component {
   render () {
     const { children } = this.props
     return (
+      <>
       <div className='layout'>
         <Header/>
-        <div>
+        <div className="cont">
           {children}
         </div>
         <Footer />
       </div>
+      <style jsx>{`
+                  .cont {
+                    overflow: auto;
+                    height: 79vh;
+                  }
+              `}</style>
+      </>
     );
   }
 }

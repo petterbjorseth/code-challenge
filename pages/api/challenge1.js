@@ -13,10 +13,10 @@ export default function handler(req, res) {
       return res.status(400).json({ data: 'No answer found' })
     }
 
-    let ret = "False";
+    let ret = false;
 
     if (parseInt(body.answer) === 56) {
-        ret = "Correct!";
+        ret = true;
     }
   
     // Found the name.

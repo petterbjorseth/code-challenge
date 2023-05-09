@@ -1,7 +1,14 @@
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
+import Confetti from 'react-confetti'
+import { useState } from 'react';
+import style from '../../styles/extra.module.css' 
 
 export default function One() {
+
+    let [confetti, setConfetti] = useState(false);
+    let [correctAnswer, setCorrectAnswer] = useState(false);
+    let [hasAnswered, setHasAnswered] = useState(false);
 
     function sendAnswer() {
         const answer = document.querySelector('#answer').value
@@ -9,11 +16,19 @@ export default function One() {
             answer: answer
         })
         .then((response) => {
-            console.log(response.data);
+            setHasAnswered(true);
+            if (response.data.data ===  'true') {
+                setConfetti(true);
+                setCorrectAnswer(true);
+            }
         })
         .catch((error) => {
             console.log(error);
         })
+    }
+
+    function noConfetti() {
+        setConfetti(false);
     }
 
     const md = `
@@ -44,14 +59,33 @@ export default function One() {
 
     return (
         <>
+            {
+            !correctAnswer && 
             <div>
+                <div>
                 <h1>Eggs of Europe</h1>
+                {
+                    (!correctAnswer && hasAnswered) &&
+                    <p className={style.youDidntDoIt}>Wrong answer.. Try again!</p>
+                }
                 <ReactMarkdown children={md}/>
             </div>
             <div>
                 <input type="text" id="answer" name="answer" label="text"/>
                 <button onClick={sendAnswer}>Send answer </button>
             </div>
+            </div>
+            }
+            {
+                correctAnswer &&
+                <div className={style.youDidIt} onClick={() => {setCorrectAnswer(false)}}>
+                    <p>YOU DID IT!! WELL DONE :-D (click here to view challenge text again)</p>
+                    <img src='/success1.jpg'/>
+                </div>
+            }
+            {
+                confetti && <Confetti numberOfPieces={10000} gravity={0.1} tweenDuration={10000} onConfettiComplete={noConfetti} recycle={false}/>
+            }
         </>
     )
 }

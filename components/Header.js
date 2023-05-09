@@ -9,17 +9,15 @@ class Header extends Component {
                 <header>
                     <a
                     href="/"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     >
-                    <img src="/code.png" alt="Vercel" className={styles.logo} width="150" height="100" />
+                    <img src="/code.png" alt="Cooooodeeeee" className={styles.logo} width="700" height="100" />
                     </a>
                 </header>
 
                 <style jsx>{`
                     header {
                     width: 100%;
-                    height: 100px;
+                    height: 10vh;
                     border-bottom: 1px solid #eaeaea;
                     display: flex;
                     justify-content: center;

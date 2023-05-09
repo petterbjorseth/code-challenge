@@ -1,7 +1,15 @@
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
+import Confetti from 'react-confetti'
+import { useState } from 'react';
+import style from '../../styles/extra.module.css' 
 
-export default function Five() {
+export default function One() {
+
+    let [confetti, setConfetti] = useState(false);
+    let [correctAnswer, setCorrectAnswer] = useState(false);
+    let [hasAnswered, setHasAnswered] = useState(false);
+    let [hintCount, setHintCount] = useState(-1);
 
     function sendAnswer() {
         const answer = document.querySelector('#answer').value
@@ -9,11 +17,25 @@ export default function Five() {
             answer: answer
         })
         .then((response) => {
-            console.log(response.data);
+            setHasAnswered(true);
+            if (response.data.data ===  'true') {
+                setConfetti(true);
+                setCorrectAnswer(true);
+            }
         })
         .catch((error) => {
             console.log(error);
         })
+    }
+
+    function noConfetti() {
+        setConfetti(false);
+    }
+
+    function reset() {
+        setHasAnswered(false);
+        setCorrectAnswer(false);
+        setConfetti(false);
     }
 
     const md = `
@@ -37,21 +59,45 @@ export default function Five() {
     01100011 00110010 01100111 00111101
 
     Oh, and one last thing. I believe the answer is on the format flag{some_text_here}.
-
-    _(Hints will be gradually given during the day)_
     `
     
-
+    const hints = ['Be honest, did you try solving it before pressint hint?', 'Give it a try! You are smarter than you think ;)',
+                    'Why do computers use ones and zeros when humans use ones and twos and threes and-',
+                    'I really think you should give it a try between each hint',
+                    '']
     return (
         <>
+            {
+            !correctAnswer && 
             <div>
-                <h1>Matryoshka Encoded Eggs</h1>
+                <div>
+                <h1>Easter numbers</h1>
+                {
+                    (!correctAnswer && hasAnswered) &&
+                    <p className={style.youDidntDoIt}>Wrong answer.. Try again!</p>
+                }
                 <ReactMarkdown children={md}/>
+            </div>
+            <div>
+                <button onClick={() => setHintCount(hintCount + 1)}>Hint</button>
+                <p>{(hintCount >= 0) && hints[hintCount]}</p>
             </div>
             <div>
                 <input type="text" id="answer" name="answer" label="text"/>
                 <button onClick={sendAnswer}>Send answer </button>
             </div>
+            </div>
+            }
+            {
+                correctAnswer &&
+                <div className={style.youDidIt} onClick={reset}>
+                    <p>YOU DID IT!! WELL DONE :-D (click here to view challenge text again)</p>
+                    <img src='/success1.jpg'/>
+                </div>
+            }
+            {
+                confetti && <Confetti numberOfPieces={10000} gravity={0.1} tweenDuration={10000} onConfettiComplete={noConfetti} recycle={false}/>
+            }
         </>
     )
 }

@@ -13,11 +13,11 @@ export default function handler(req, res) {
       return res.status(400).json({ data: 'No answer found' })
     }
 
-    let ret = "False";
+    let ret = false;
 
     let answer = 'flag{happy_easter_to_each_and_every_one_of_you}';
     if (body.answer === answer) {
-        ret = "Correct!";
+        ret = true;
     }
   
     // Found the name.

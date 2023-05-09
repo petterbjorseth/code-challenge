@@ -9,7 +9,7 @@ class Footer extends Component {
                 <footer>
                     <a
                     href="https://www.netlight.com/"
-                    target="_blank"
+                    target="_blank" 
                     rel="noopener noreferrer"
                     >
                     <img src="/unicorn.png" alt="Vercel" className={styles.logo} width="150" height="100" />
@@ -19,12 +19,13 @@ class Footer extends Component {
                 <style jsx>{`
                     footer {
                     width: 100%;
-                    height: 100px;
+                    height: 10vh;
                     border-top: 1px solid #eaeaea;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     bottom: 0;
+                    position: fixed;
                     }
                     footer img {
                     margin-left: 0.5rem;

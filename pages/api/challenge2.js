@@ -13,11 +13,12 @@ export default function handler(req, res) {
       return res.status(400).json({ data: 'No answer found' })
     }
 
-    let ret = "False";
-
-    let answer = '(1,12)';
-    if (body.answer === answer) {
-        ret = "Correct!";
+    let ret = false;
+    
+    console.log(body.answer)
+    if (body.answer === '(1,12)' || body.answer === '(1, 12)' || body.answer === '1,12' || body.answer === '1, 12') {
+        console.log("hei");
+        ret = true;
     }
   
     // Found the name.
