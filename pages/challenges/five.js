@@ -61,10 +61,7 @@ export default function One() {
     Oh, and one last thing. I believe the answer is on the format flag{some_text_here}.
     `
     
-    const hints = ['Be honest, did you try solving it before pressint hint?', 'Give it a try! You are smarter than you think ;)',
-                    'Why do computers use ones and zeros when humans use ones and twos and threes and-',
-                    'I really think you should give it a try between each hint',
-                    '']
+    
     return (
         <>
             {
@@ -78,10 +75,7 @@ export default function One() {
                 }
                 <ReactMarkdown children={md}/>
             </div>
-            <div>
-                <button onClick={() => setHintCount(hintCount + 1)}>Hint</button>
-                <p>{(hintCount >= 0) && hints[hintCount]}</p>
-            </div>
+           
             <div>
                 <input type="text" id="answer" name="answer" label="text"/>
                 <button onClick={sendAnswer}>Send answer </button>
