@@ -31,6 +31,12 @@ export default function One() {
         setConfetti(false);
     }
 
+    function reset() {
+        setHasAnswered(false);
+        setCorrectAnswer(false);
+        setConfetti(false);
+    }
+
     const md = `
     The easter bunny is on a mission to hand out easter eggs to all the Netlight offices.
     They can fly, and are travelling at a constant speed of \`250 km/h\`.
@@ -78,7 +84,7 @@ export default function One() {
             }
             {
                 correctAnswer &&
-                <div className={style.youDidIt} onClick={() => {setCorrectAnswer(false)}}>
+                <div className={style.youDidIt} onClick={() => {reset}}>
                     <p>YOU DID IT!! WELL DONE :-D (click here to view challenge text again)</p>
                     <img src='/success1.jpg'/>
                 </div>
